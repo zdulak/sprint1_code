@@ -1,6 +1,17 @@
 import random
 
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 jim_question = ["Are you below 14? ", "Are you going to use a sauna? ", "Are you student? ", "Are you man? "]
 jim_answer = [
     "Below the age of 14, usage of the gym is forbidden", "You need to pay 1500 HUF",
@@ -16,30 +27,18 @@ The programmer returns home with 12 loaves of bread. They had eggs.",
     ]
 
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
-
 print("Welcome to our gym!")
 
 pos = 0
-while True:
+while pos < len(jim_question):
     answer = input(bcolors.FAIL + jim_question[pos] + bcolors.ENDC)
     print(random.choice(jokes))
     if answer.lower() == "yes":
         print(bcolors.OKGREEN + jim_answer[pos] + bcolors.ENDC)
-        break
+        break  # alternatywa: pos = len(jim_question); continue
     elif answer.lower() == "no":
         pos += 1
-        if pos == 4:
-            print(jim_answer[pos])
-            break
+        if pos == len(jim_question):
+            print(bcolors.OKGREEN + jim_answer[pos] + bcolors.ENDC)
     else:
         print("Please give answer yes or no")
